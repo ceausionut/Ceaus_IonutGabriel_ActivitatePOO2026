@@ -51,8 +51,8 @@ int Cofetarie::nrCofetarii = 0;
 void main() {
 	Cofetarie cofetarieGenerala;
 	cofetarieGenerala.afisare();
-
-	float* preturi = new float[] {18.5, 24, 15.5};
+	//eroare float
+	float* preturi = new float[3] {18.5, 24, 15.5};
 	Cofetarie* cofetarieRomana = new Cofetarie(7, "CofetarieRomana", 3, preturi);
 	cofetarieRomana->afisare();
 
