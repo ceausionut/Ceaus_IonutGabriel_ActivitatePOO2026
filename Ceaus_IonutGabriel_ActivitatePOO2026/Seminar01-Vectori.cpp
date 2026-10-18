@@ -21,7 +21,11 @@ void main() {
 	for (int i = 0; i < d; i++){
 		v[i] = i + 1;
 	}
-	cout << v[2];
+	for (int i=0; i < d; i++) {
+		cout << v[i];
+	}
+	delete[] v;
+	v = nullptr;
 
 
 }
