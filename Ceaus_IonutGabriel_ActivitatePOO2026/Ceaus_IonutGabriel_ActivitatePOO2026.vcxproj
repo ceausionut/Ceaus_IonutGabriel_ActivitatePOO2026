@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Seminar01-activitate01.cpp" />
+    <ClCompile Include="Seminar01-Vectori.cpp" />
     <ClCompile Include="Seminar01.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
