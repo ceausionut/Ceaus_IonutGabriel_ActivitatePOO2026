@@ -24,5 +24,8 @@
     <ClCompile Include="Seminar01-Vectori.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Activitate03-working Librarie.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
