@@ -31,7 +31,21 @@ public:
 		this->numarSegmente = 0;
 
 	}
-	BiletAvion(const BiletAvion& copie) {
+	BiletAvion(const BiletAvion& copie) :numarBilet(++nrBilet){
+		this->numePasager = copie.numePasager;
+		this->durataZbor = copie.durataZbor;
+		this->numarSegmente = copie.numarSegmente;
+		if (copie.distante != nullptr && copie.numarSegmente > 0) {
+			this->distante = new double[numarSegmente];
+			for (int i = 0; i < this->numarSegmente; i++) {
+				this->distante[i] = copie.distante[i];
+			}
+		}
+		else
+		{
+			this->distante = nullptr;
+
+		}
 
 	}
 
@@ -39,7 +53,8 @@ public:
 		cout << endl << "Numar bilet: " << this->numarBilet;
 		cout << endl << "Nume Pasager : " << this->numePasager;
 		cout << endl << "Durata Zbor: " << this->durataZbor;
-		cout << endl << "Distanta: " << *(this->distante);
+
+		cout << endl << "Distanta: " << this->distante;
 		cout << endl << "Numar segemente: " << this->numarSegmente;
 	}
 	~BiletAvion(){
@@ -56,8 +71,10 @@ int BiletAvion::nrBilet = 0;
 
 
 void main() {
-	BiletAvion bilet("Ionut", 3);
+	BiletAvion* bilet1 = new BiletAvion("Ionut", 4);
 	BiletAvion bilet2("Gigel", 2);
+	BiletAvion biletcopiat = bilet;
 	bilet.afisare();
 	bilet2.afisare();
+	biletcopiat.afisare();
 }
