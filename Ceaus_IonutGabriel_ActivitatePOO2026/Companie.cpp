@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
 using namespace std;
@@ -24,7 +24,7 @@ public:
 	int getId() {
 		return this->id;
 	}
-	void setnume_companie(char* nume_companie) {
+	void setnume_companie(const char* nume_companie) {
 		if (nume_companie != nullptr) {
 			delete[] this->nume_companie;
 			this->nume_companie = new char[strlen(nume_companie) + 1];
@@ -33,7 +33,48 @@ public:
 
 		}
 	}
+	bool operator<(const Companie& copie) {
+		return this->cifra_afaceri < copie.cifra_afaceri;
+	}
 
+	void operator+=(double vanzari_adaugate){
+		 this->cifra_afaceri += vanzari_adaugate;
+	}
+
+	void operator=(const Companie& copie) {
+		if (this != &copie) { // Pas 1: Dacă scrii din greșeală c1 = c1, nu face nimic
+
+			// Pas 2: Copiem cifra de afaceri din c2 în c1
+			this->cifra_afaceri = copie.cifra_afaceri;
+
+			// Pas 3: Dacă c1 avea deja un nume scris în memorie, îl ștergem ca să nu rămână gunoi în RAM
+			if (this->nume_companie != nullptr) {
+				delete[] this->nume_companie;
+				this->nume_companie = nullptr;
+			}
+
+			// Pas 4: Dacă c2 are un nume, îi facem lui c1 propria lui zonă de memorie și copiem literele acolo
+			if (copie.nume_companie != nullptr) {
+				this->nume_companie = new char[strlen(copie.nume_companie) + 1];
+				strcpy(this->nume_companie, copie.nume_companie);
+			}
+		}
+	}
+	char& operator[](int index) {
+		if (nume_companie != nullptr && index >= 0 && index < strlen(this->nume_companie)) {
+			return this->nume_companie[index];
+		}
+
+		else {
+			throw exception();
+
+		}
+	}
+	~Companie() {
+		if(nume_companie != nullptr) {
+			delete[] this->nume_companie;
+		}
+	}
 		void afisare() {
 			cout << endl << this->id;
 			cout << endl << this->cifra_afaceri ;
@@ -51,20 +92,33 @@ public:
 	}
 };
 
-int Companie::contor = 0;
+int Companie::contor = 1;
 int main() {
 	Companie c1;
-	char aux[20];
-	strcpy(aux, "gigelescu");
-	c1.setnume_companie(aux);
+	c1.setnume_companie("sortescu");
 	c1.afisare();
 	Companie c2(100.44);
-	strcpy(aux, "popescu");
-	c2.setnume_companie(aux);
+	c2.setnume_companie("gigelescu");
 	c2.afisare();
 	Companie c3(30.44);
+	c3.setnume_companie("popescu");
 	c3.afisare();
+	cout << endl << "id-ul lui c3 este :" << c3.getId();
+	/*c1 = c3;
+	c2 = c3;*/
+	c1.afisare();
+	c2.afisare();
+	c3.afisare();
+	c3 += 230.22;
+	if (c3 < c2) {
+		cout << endl << "cifra afaceri c3 este mai mica de cat c2";
+	}
+	else {
+		cout << endl << "cifra afaceri c2 este mai mica de cat c3";
+	}
 
+	c3.afisare();
+	cout << endl << c3[2];
 
 
 
