@@ -129,6 +129,8 @@
     <ClCompile Include="Seminar01-activitate01.cpp" />
     <ClCompile Include="Seminar01-Vectori.cpp" />
     <ClCompile Include="Seminar01.cpp" />
+    <ClCompile Include="Test simulation.cpp" />
+    <ClCompile Include="Vapor Training test.cpp" />
     <ClCompile Include="TrainingForTest-BiletAvion.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
